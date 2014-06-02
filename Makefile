@@ -6,7 +6,7 @@
 #    By: npineau <npineau@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/08 10:39:32 by npineau           #+#    #+#              #
-#    Updated: 2014/06/02 15:48:50 by npineau          ###   ########.fr        #
+#    Updated: 2014/06/02 18:17:19 by jvincent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,23 +24,25 @@ DIRGFX	:=	$(DIRSRC)/$(GFX)
 DIROBJ	:=	objects
 DIRINC	:=	includes
 DIRLIB	:=	libft
+DIRSDL	:=	SDL2
 
 ### FILES ###
 
-SRCCLI	:=	
+SRCCLI	:=	client.c
 
-SRCSRV	:=	
+SRCSRV	:=	serveur.c
 
-SRCGFX	:=	
+SRCGFX	:=	gfx.c
 
 OBJCLI	:=	$(SRCCLI:.c=.o)
 OBJSRV	:=	$(SRCSRV:.c=.o)
 OBJGFX	:=	$(SRCGFX:.c=.o)
 
 HEADCLI	:=	client.h
-HEADSRV	:=	server.h
+HEADSRV	:=	$(SERVEUR).h
 HEADGFX	:=	gfx.h
 LIB		:=	libft.a
+SLIB	:=	libSDL2.a
 
 ### PATHS ###
 
@@ -52,14 +54,15 @@ PHEADCLI	:=	$(DIRINC)/$(HEADCLI)
 PHEADSRV	:=	$(DIRINC)/$(HEADSRV)
 PHEADGFX	:=	$(DIRINC)/$(HEADGFX)
 PLIB		:=	$(DIRLIB)/$(LIB)
+PSDL		:=	$(DIRSDL)/lib/$(SLIB)
 
 ### COMPILATION VARIABLES ###
 
 CC		:=	llvm-gcc
 C_FLAG	:=	-Wall -Wextra -Werror
 O_FLAG	:=	-O3
-L_FLAG	:=	-L $(DIRLIB) -lft
-C_INC	:=	-I $(DIRINC) -I $(DIRLIB)/$(DIRINC)
+L_FLAG	:=	-L $(DIRLIB) -lft -L $(DIRSDL)/lib -lSDL2
+C_INC	:=	-I $(DIRINC) -I $(DIRLIB)/$(DIRINC) -I $(DIRSDL)/include/$(DIRSDL)/
 
 COMPIL	=	$(CC) -o $@ -c $< $(C_INC) $(C_FLAG) $(O_FLAG)
 LINK	=	$(CC) -o $@ $^ $(L_FLAG)
@@ -68,7 +71,18 @@ LINK	=	$(CC) -o $@ $^ $(L_FLAG)
 
 .PHONY: all clean fclean re
 
-all: $(PLIB) $(SERVEUR) $(CLIENT) $(GFX)
+all: $(PSDL) $(PLIB) $(SERVEUR) $(CLIENT) $(GFX)
+
+### SDL2.0 ###
+
+$(PSDL):
+	mkdir -p $(DIRSDL)/junk
+	curl -O http://www.libsdl.org/release/SDL2-2.0.3.tar.gz
+	tar xf SDL2-2.0.3.tar.gz
+	( cd SDL2-2.0.3 \
+		&& ./configure CC=clang --prefix=$(shell pwd)/$(DIRSDL)/ \
+		&& $(MAKE) && $(MAKE) install )
+	mv SDL2-2.0.3.tar.gz SDL2-2.0.3 SDL2/junk
 
 ### LIBFT ###
 

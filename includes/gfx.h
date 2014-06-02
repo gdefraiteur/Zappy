@@ -4,7 +4,14 @@
 # include "libft.h"
 
 # define SDL_WPU SDL_WINDOWPOS_UNDEFINED
-# define WIDTH 2560
-# define HEIGHT 1440
+# define FS (SDL_WINDOW_SHOWN)
+# define WIDTH 1920
+# define HEIGHT 1080
+
+typedef struct	s_sdl
+{
+	SDL_Window	*win;
+	SDL_Surface	*screen;
+}				t_sdl;
 
 #endif

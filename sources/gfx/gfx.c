@@ -6,41 +6,51 @@
 /*   By: jvincent <jvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/02 18:17:54 by jvincent          #+#    #+#             */
-/*   Updated: 2014/06/02 18:26:23 by jvincent         ###   ########.fr       */
+/*   Updated: 2014/06/02 19:06:28 by jvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "SDL.h"
 #include "gfx.h"
 
+int	init_sdl(t_sdl *e)
+{
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+		return (ft_error("SDL_Init failed."));
+	e->win = SDL_CreateWindow("GFX ZAPPY", SDL_WPU, SDL_WPU, WIDTH, HEIGHT, FS);
+	if (e->win == NULL)
+		return (ft_error("Can't create window."));
+	e->screen = SDL_GetWindowSurface(e->win);
+	return (0);
+}
+
+void	close_sdl(t_sdl *e)
+{
+	SDL_FreeSurface(e->screen);
+	SDL_DestroyWindow(e->win);
+	SDL_Quit();
+}
+
+void	draw_crap(t_sdl *e)
+{
+	int	color;
+
+	color = SDL_MapRGB(e->screen->format, 0xDC, 0x14, 0x3C);
+	SDL_FillRect(e->screen, NULL, color);
+	SDL_UpdateWindowSurface(e->win);
+}
+
 int	main(int argc, char **argv)
 {
-	SDL_Window	*window;
-	SDL_Surface	*screen;
+	t_sdl	e;
 	
-	window = NULL;
-	screen = NULL;
 	(void)argc;
 	(void)argv;
 
 	ft_printf("GFX on.");
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-		return (ft_error("Fuck off."));
-	else
-	{
-		window = SDL_CreateWindow("GFX ZAPPY", SDL_WPU, SDL_WPU, WIDTH, HEIGHT, SDL_WINDOW_FULLSCREEN);
-		if (window == NULL)
-			return (ft_error("Can't create window."));
-		else
-		{
-			screen = SDL_GetWindowSurface(window);
-			SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0x99, 0x00, 0x00));
-			SDL_UpdateWindowSurface(window);
-			SDL_Delay(2000);
-		}
-	}
-	SDL_FreeSurface(screen);
-	SDL_DestroyWindow(window);
-	SDL_Quit();
+	init_sdl(&e);
+	draw_crap(&e);
+	SDL_Delay(2000);
+	close_sdl(&e);
 	return (0);
 }

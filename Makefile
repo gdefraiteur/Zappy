@@ -6,7 +6,7 @@
 #    By: npineau <npineau@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/08 10:39:32 by npineau           #+#    #+#              #
-#    Updated: 2014/06/02 15:47:27 by npineau          ###   ########.fr        #
+#    Updated: 2014/06/02 15:48:50 by npineau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,8 @@ $(DIROBJ):
 $(POBJSRV): |$(DIROBJ)
 
 $(POBJCLI): |$(DIROBJ)
+
+$(POBJGFX): |$(DIROBJ)
 
 $(DIROBJ)/%.o: $(DIRCLI)/%.c $(PHEADCLI)
 	$(COMPIL)

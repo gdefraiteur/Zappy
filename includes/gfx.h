@@ -7,6 +7,9 @@
 # define FS (SDL_WINDOW_SHOWN)
 # define WIDTH 1920
 # define HEIGHT 1080
+# define KEY_ESC 27
+# define KEY_ENTER 13
+# define KEY_SPACE 32
 
 typedef struct	s_sdl
 {

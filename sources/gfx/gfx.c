@@ -6,7 +6,7 @@
 /*   By: jvincent <jvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/02 18:17:54 by jvincent          #+#    #+#             */
-/*   Updated: 2014/06/02 19:06:28 by jvincent         ###   ########.fr       */
+/*   Updated: 2014/06/03 14:25:41 by jvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	init_sdl(t_sdl *e)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		return (ft_error("SDL_Init failed."));
-	e->win = SDL_CreateWindow("GFX ZAPPY", SDL_WPU, SDL_WPU, WIDTH, HEIGHT, FS);
+	e->win = SDL_CreateWindow("GFX ZAPPY BETA", SDL_WPU, SDL_WPU, WIDTH, HEIGHT, FS);
 	if (e->win == NULL)
 		return (ft_error("Can't create window."));
 	e->screen = SDL_GetWindowSurface(e->win);

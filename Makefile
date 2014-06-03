@@ -6,7 +6,7 @@
 #    By: npineau <npineau@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/08 10:39:32 by npineau           #+#    #+#              #
-#    Updated: 2014/06/03 16:07:27 by jvincent         ###   ########.fr        #
+#    Updated: 2014/06/04 00:52:58 by garm             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ DIRGFX	:=	$(DIRSRC)/$(GFX)
 DIROBJ	:=	objects
 DIRINC	:=	includes
 DIRLIB	:=	libft
+DIRSCK	:=	libftsock
 DIRSDL	:=	SDL2
 
 ### FILES ###
@@ -62,8 +63,11 @@ PSDL		:=	$(DIRSDL)/lib/$(SLIB)
 CC		:=	llvm-gcc
 C_FLAG	:=	-Wall -Wextra -Werror
 O_FLAG	:=	-O3
-L_FLAG	:=	-L $(DIRLIB) -lft -L $(DIRSDL)/lib -lSDL2 -lSDL2_image
-C_INC	:=	-I $(DIRINC) -I $(DIRLIB)/$(DIRINC) -I $(DIRSDL)/include/$(DIRSDL)/
+L_FLAG	:=	-L $(DIRLIB) -lft -L $(DIRSCK) -lftsock \
+			-L $(DIRSDL)/lib -lSDL2 -lSDL2_image
+C_INC	:=	-I $(DIRINC) -I $(DIRLIB)/$(DIRINC) \
+			-I $(DIRSDL)/include/$(DIRSDL)/ \
+			-I $(DIRSCK)/includes/
 
 COMPIL	=	$(CC) -o $@ -c $< $(C_INC) $(C_FLAG) $(O_FLAG)
 LINK	=	$(CC) -o $@ $^ $(L_FLAG)
@@ -95,6 +99,7 @@ $(PSDL):
 
 $(PLIB):
 	make -C $(DIRLIB)
+	make -C $(DIRSCK)
 
 ### OBJECTS ###
 
@@ -133,9 +138,15 @@ $(GFX): $(POBJGFX)
 ### CLEAN UP ###
 
 clean:
-	rm -rf $(DIROBJ)
+	@echo "Clean objects files"
+	@rm -rf $(DIROBJ)
+	@make clean -C $(DIRLIB)
+	@make clean -C $(DIRSCK)
 
 fclean: clean
-	rm -f $(CLIENT) $(SERVEUR) $(GFX)
+	@echo "Clean binary + library"
+	@rm -f $(CLIENT) $(SERVEUR) $(GFX)
+	@rm -f libft/libft.a
+	@rm -f libftsock/libftsock.a
 
 re: fclean all

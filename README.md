@@ -1,10 +1,5 @@
-Zappy
+Zappy Serveur
 =====
 
-Clone your libft in project.
+Soon ...
 
-make
-
-./gfx
-./serveur
-./client

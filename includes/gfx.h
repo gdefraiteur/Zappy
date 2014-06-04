@@ -1,48 +1,49 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   gfx.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jvincent <jvincent@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/06/04 17:52:56 by jvincent          #+#    #+#             */
+/*   Updated: 2014/06/04 17:56:12 by jvincent         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GFX_H
 # define GFX_H
 
-# include "libft.h"
+# include "gfx_struct.h"
 
-# define SDL_WPU SDL_WINDOWPOS_UNDEFINED
-# define FS (SDL_WINDOW_SHOWN)
-# define WIDTH 1920
-# define HEIGHT 1080
-# define MAP_W 10109
-# define MAP_H 4542
-# define SQUARE_W 50
-# define KEY_ESC 27
-# define KEY_ENTER 13
-# define KEY_SPACE 32
-# define KEY_UP 1073741906
-# define KEY_DOWN 1073741905
-# define KEY_LEFT 1073741904
-# define KEY_RIGHT 1073741903
+/*
+** gfx.c
+*/
+int			gfx_core(t_env *gfx);
 
-typedef struct		s_sdl
-{
-	SDL_Window		*win;
-	SDL_Renderer	*screen;
-	SDL_Texture		*view;
-}					t_sdl;
+/*
+** draw.c
+*/
+void		draw_menu(t_env *gfx);
+void		draw_board(t_env *gfx);
 
-typedef struct s_env
-{
-	t_sdl		e;
-	int			camera[2];
-	int			scroll[4];
-	int			s_speed;
-}				t_env;
+/*
+** event.c
+*/
+void		mouse_check_y(t_env *gfx, int y);
+void		mouse_check_x(t_env *gfx, int x);
+void		mouse_event(t_env *gfx);
+int			event_listener(SDL_Event *ev, int *quit, t_env *gfx);
 
-typedef struct		s_case
-{
-	int				stones[7];
-	int				food;
-}					t_case;
+/*
+** camera.c
+*/
+void		move_camera(t_env *gfx);
 
-typedef struct		s_game
-{
-	t_case			map[MAP_W][MAP_H];
-	int				nb_players;
-}					t_game;
+/*
+** init.c
+*/
+SDL_Texture	*load_texture(t_env *gfx, char *str);
+int			init_sdl(t_env *gfx);
+void		close_sdl(t_env *gfx);
 
 #endif

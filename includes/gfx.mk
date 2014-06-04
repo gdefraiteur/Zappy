@@ -6,9 +6,13 @@
 #    By: npineau <npineau@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/04 12:54:08 by npineau           #+#    #+#              #
-#    Updated: 2014/06/04 12:57:29 by npineau          ###   ########.fr        #
+#    Updated: 2014/06/04 17:55:25 by jvincent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-SRCGFX	:=	gfx.c
+SRCGFX	:=	camera.c \
+			draw.c \
+			event.c \
+			gfx.c \
+			init.c

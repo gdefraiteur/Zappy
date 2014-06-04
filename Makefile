@@ -6,7 +6,7 @@
 #    By: npineau <npineau@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/08 10:39:32 by npineau           #+#    #+#              #
-#    Updated: 2014/06/04 00:52:58 by garm             ###   ########.fr        #
+#    Updated: 2014/06/04 13:00:19 by npineau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,11 +29,11 @@ DIRSDL	:=	SDL2
 
 ### FILES ###
 
-SRCCLI	:=	client.c
+include $(DIRINC)/$(CLIENT).mk
 
-SRCSRV	:=	serveur.c
+include $(DIRINC)/$(SERVEUR).mk
 
-SRCGFX	:=	gfx.c
+include $(DIRINC)/$(GFX).mk
 
 OBJCLI	:=	$(SRCCLI:.c=.o)
 OBJSRV	:=	$(SRCSRV:.c=.o)

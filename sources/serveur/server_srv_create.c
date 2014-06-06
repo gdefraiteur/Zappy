@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 17:17:59 by npineau           #+#    #+#             */
-/*   Updated: 2014/06/06 15:26:44 by npineau          ###   ########.fr       */
+/*   Updated: 2014/06/06 17:16:16 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,5 @@ void		srv_create(t_env *e, int port)
 		print_server(s->port);
 	e->fds[s->sock].type = FD_SERV;
 	e->fds[s->sock].fct_read = srv_accept;
+	ftsock_destroy(&s);
 }

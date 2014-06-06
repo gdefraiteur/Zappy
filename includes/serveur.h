@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/22 15:19:39 by npineau           #+#    #+#             */
-/*   Updated: 2014/06/03 15:53:46 by npineau          ###   ########.fr       */
+/*   Updated: 2014/06/06 17:21:21 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@
 
 # define BUF_SIZE	4096
 # define NICK_SIZE	9
-# define CHAN_SIZE	200
+# define TEAM_SIZE	256
 
 typedef struct	s_fd
 {
 	int			type;
-	char		nick[NICK_SIZE + 1];
-	char		channel[CHAN_SIZE + 1];
+	char		team[TEAM_SIZE + 1];
 	void		(*fct_read)();
 	void		(*fct_write)();
 	char		buf_read[BUF_SIZE + 1];
@@ -52,7 +51,9 @@ void			get_opt(t_env *e, int ac, char **av);
 void			main_loop(t_env *e);
 void			srv_create(t_env *e, int port);
 void			srv_accept(t_env *e, int s);
-void			client_read(t_env *e, int cs);
+void			client_unknown(t_env *e, int cs);
+void			client_graphic(t_env *e, int cs);
+void			client_player(t_env *e, int cs);
 void			client_write(t_env *e, int cs);
 void			clean_fd(t_fd *fd);
 int				x_int(int err, int res, char *str);

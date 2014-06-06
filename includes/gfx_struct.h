@@ -6,7 +6,7 @@
 /*   By: jvincent <jvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 17:53:05 by jvincent          #+#    #+#             */
-/*   Updated: 2014/06/04 17:53:07 by jvincent         ###   ########.fr       */
+/*   Updated: 2014/06/06 18:51:51 by jvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # define FS (SDL_WINDOW_SHOWN)
 # define WIDTH 1920
 # define HEIGHT 1080
-# define MAP_W 10109
-# define MAP_H 4542
+# define MAP_W 100
+# define MAP_H 100
 # define SQUARE_W 50
 # define KEY_ESC 27
 # define KEY_ENTER 13
@@ -39,13 +39,30 @@ typedef struct		s_sdl
 	SDL_Texture		*view;
 }					t_sdl;
 
-typedef struct s_env
+typedef struct		s_player
 {
-	t_sdl		e;
-	int			camera[2];
-	int			scroll[4];
-	int			s_speed;
-}				t_env;
+	int				id;
+	int				x;
+	int				y;
+	int				level;
+	int				food;
+	int				stones[7];
+}					t_player;
+
+typedef struct		s_team
+{
+	char			*name;
+	t_player		*players;
+}					t_team;
+
+typedef struct 		s_env
+{
+	t_sdl			e;
+	int				camera[2];
+	int				scroll[4];
+	int				s_speed;
+	t_team			*teams;
+}					t_env;
 
 typedef struct		s_case
 {

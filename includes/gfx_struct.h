@@ -6,7 +6,7 @@
 /*   By: jvincent <jvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 17:53:05 by jvincent          #+#    #+#             */
-/*   Updated: 2014/06/06 18:51:51 by jvincent         ###   ########.fr       */
+/*   Updated: 2014/06/06 19:42:26 by jvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@
 # define FS (SDL_WINDOW_SHOWN)
 # define WIDTH 1920
 # define HEIGHT 1080
-# define MAP_W 100
-# define MAP_H 100
-# define SQUARE_W 50
+# define MAP_X 100
+# define MAP_Y 100
+# define TILE_H 50
+# define TILE_W 50
+# define MAP_W (MAP_X * TILE_W)
+# define MAP_H (MAP_Y * TILE_H)
 # define KEY_ESC 27
 # define KEY_ENTER 13
 # define KEY_SPACE 32

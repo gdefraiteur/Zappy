@@ -6,7 +6,7 @@
 /*   By: jvincent <jvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 17:53:51 by jvincent          #+#    #+#             */
-/*   Updated: 2014/06/06 18:48:14 by jvincent         ###   ########.fr       */
+/*   Updated: 2014/06/06 19:41:55 by jvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	click_event(t_env *gfx)
 	(void)gfx;
 	SDL_GetMouseState(&x, &y);
 	if ((event = is_clickable(gfx, x, y)) >= 0)
-		handle_click_event(gfx, event);	
+		handle_click_event(gfx, event);
 	printf("%d - %d\n", x, y);
 }
 

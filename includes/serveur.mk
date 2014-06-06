@@ -6,14 +6,17 @@
 #    By: npineau <npineau@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/04 13:00:04 by npineau           #+#    #+#              #
-#    Updated: 2014/06/06 17:16:58 by npineau          ###   ########.fr        #
+#    Updated: 2014/06/06 17:29:24 by npineau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCSRV	:=	server_check_fd.c \
 			server_clean_fd.c \
 			server_client_add.c \
+			server_client_leave.c \
 			server_client_unknown.c \
+			server_client_graphic.c \
+			server_client_player.c \
 			server_client_write.c \
 			server_do_select.c \
 			server_get_opt.c \

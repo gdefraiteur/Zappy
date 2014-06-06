@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server_client_unknown.c                            :+:      :+:    :+:   */
+/*   server_client_graphic.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/06 17:18:03 by npineau           #+#    #+#             */
-/*   Updated: 2014/06/06 17:24:58 by npineau          ###   ########.fr       */
+/*   Created: 2014/06/06 17:26:39 by npineau           #+#    #+#             */
+/*   Updated: 2014/06/06 17:28:00 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "serveur.h"
 #include "libft.h"
 
-void		client_unknown(t_env *e, int cs)
+void		client_graphic(t_env *e, int cs)
 {
 	int	r;
 	int	count;
@@ -28,14 +28,14 @@ void		client_unknown(t_env *e, int cs)
 	{
 		e->fds[cs].fr += r;
 		if (!ft_strchr(e->fds[cs].buf_read, '\n') && e->fds[cs].fr != BUF_SIZE)
-			return ;
+			return ;/*
 		if (ft_strequ(e->fds[cs].buf_read, "GRAPHIC"))
 			e->fds[cs].fct_read = client_graphic;
 		else
 		{
 			e->fds[cs].fct_read = client_player;
 			ft_strcpy(e->fds[cs].team, e->fds[cs].buf_read);
-		}
+		}*/
 		ft_strclr(e->fds[cs].buf_read);
 		e->fds[cs].fr = 0;
 	}

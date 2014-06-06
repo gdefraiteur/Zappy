@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/22 15:19:39 by npineau           #+#    #+#             */
-/*   Updated: 2014/06/06 17:21:21 by npineau          ###   ########.fr       */
+/*   Updated: 2014/06/06 17:36:32 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct	s_fd
 typedef struct	s_env
 {
 	t_fd		*fds;
-	int			port;
 	int			maxfd;
 	int			max;
 	int			r;
@@ -47,7 +46,7 @@ typedef struct	s_env
 }				t_env;
 
 void			init_env(t_env *e);
-void			get_opt(t_env *e, int ac, char **av);
+int				get_opt(int ac, char **av);
 void			main_loop(t_env *e);
 void			srv_create(t_env *e, int port);
 void			srv_accept(t_env *e, int s);

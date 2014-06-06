@@ -149,7 +149,9 @@ SRCS_BASICS = \
 				 $(SOURCES_DIR)/basics/ft_smalloc.c \
 				 $(SOURCES_DIR)/basics/ft_sfree.c \
 				 $(SOURCES_DIR)/basics/ft_sfreeall.c \
-				 $(SOURCES_DIR)/basics/ft_remalloc.c
+				 $(SOURCES_DIR)/basics/ft_remalloc.c \
+				 $(SOURCES_DIR)/basics/ft_isx.c \
+				 $(SOURCES_DIR)/basics/ft_array_free.c
 
 SRCS_IO = \
 			 $(SOURCES_DIR)/io/ft_putchar.c \

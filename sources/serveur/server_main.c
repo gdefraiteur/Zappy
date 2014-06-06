@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   serveur.c                                          :+:      :+:    :+:   */
+/*   server_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvincent <jvincent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/02 18:18:03 by jvincent          #+#    #+#             */
-/*   Updated: 2014/06/02 18:18:08 by jvincent         ###   ########.fr       */
+/*   Created: 2014/05/20 17:44:47 by npineau           #+#    #+#             */
+/*   Updated: 2014/06/06 14:40:04 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-int	main(int argc, char **argv)
+int	main(int ac, char **av)
 {
-	(void)argc;
-	(void)argv;
-	ft_printf("Server on.");
+	t_env	e;
+
+	init_env(&e);
+	get_opt(&e, ac, av);
+	srv_create(&e, e.port);
+	main_loop(&e);
 	return (0);
 }

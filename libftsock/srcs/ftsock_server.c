@@ -6,11 +6,21 @@
 /*   By: garm <garm@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/14 19:33:58 by garm              #+#    #+#             */
-/*   Updated: 2014/05/22 12:58:11 by garm             ###   ########.fr       */
+/*   Updated: 2014/06/06 15:24:12 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftsock.h"
+
+static int		get_port(int sock)
+{
+	struct sockaddr_in	sin;
+	socklen_t			len;
+
+	len = sizeof(sin);
+	getsockname(sock, (struct sockaddr *)&sin, &len);
+	return (ntohs(sin.sin_port));
+}
 
 void		ftsock_prepare(t_tcpsock *s, t_protoent *proto, int p, int backlog)
 {
@@ -23,8 +33,6 @@ void		ftsock_prepare(t_tcpsock *s, t_protoent *proto, int p, int backlog)
 	s->type = FTSOCK_SERVER;
 	s->error = FTSOCK_NOERROR;
 	s->data = NULL;
-	if (p == 0)
-		s->error = FTSOCK_BAD_PORT;
 	if ((s->sock = socket(PF_INET, SOCK_STREAM, proto->p_proto)) == -1)
 		s->error = FTSOCK_SOCKETERROR;
 	s->sin.sin_family = AF_INET;
@@ -49,6 +57,8 @@ t_tcpsock	*ftsock_create_server(int port, int backlog)
 	}
 	if (!serv->error && (listen(serv->sock, backlog)) == -1)
 		serv->error = FTSOCK_LISTENERROR;
+	if (serv->port == 0)
+		serv->port = get_port(serv->sock);
 	return (serv);
 }
 

@@ -6,7 +6,7 @@
 /*   By: garm <garm@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/02 00:59:39 by garm              #+#    #+#             */
-/*   Updated: 2014/03/29 20:15:17 by garm             ###   ########.fr       */
+/*   Updated: 2014/06/06 14:55:32 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void			*ft_memmove(void *s1, const void *s2, size_t n);
 void			*ft_memalloc(size_t size);
 void			ft_memdel(void **ap);
 void			*ft_remalloc(void *addr, size_t oldsize, size_t newsize);
+void			ft_array_free(void **array);
 
 /*
 ** Secure memory functions

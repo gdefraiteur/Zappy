@@ -6,7 +6,7 @@
 /*   By: garm <garm@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/02 00:45:59 by garm              #+#    #+#             */
-/*   Updated: 2014/03/29 20:19:44 by garm             ###   ########.fr       */
+/*   Updated: 2014/06/06 14:55:42 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int			ft_strcmp(const char *s1, const char *s2);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_strequ(char const *s1, char const *s2);
 int			ft_strnequ(char const *s1, char const *s2, size_t n);
+int			ft_isx(char *str, int (*is)(int));
 
 char		*ft_strnew(size_t size);
 void		ft_strdel(char **as);

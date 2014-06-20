@@ -105,7 +105,15 @@ void	g_send_map(t_env *e)
 {
 	int	j;
 	int	i;
+	char	*tmp;
 
+	tmp = ft_strclone("msz ");
+	tmp = ft_stradd(tmp, ft_itoa(e->map.xlen));
+	tmp = ft_stradd(tmp, " ");
+	tmp = ft_stradd(tmp, ft_itoa(e->map.ylen));
+	send_res(-1, tmp, e);
+	free(tmp);
+	tmp = NULL;
 	i = -1;
 	j = -1;
 	while (++i < e->map.ylen)
@@ -220,6 +228,7 @@ void		init_graph(t_env *e, int cs)
 
 	i = 0;
 	(void)cs;
+	g_send_map(e);
 	while (i < e->nbpl)
 	{
 		if (e->pl[i].cs >= 0)
@@ -227,7 +236,6 @@ void		init_graph(t_env *e, int cs)
 		e->pl[i].updated = 0;
 		i++;
 	}
-	g_send_map(e);
 	i = e->nbegg;
 	while (i > 0)
 	{

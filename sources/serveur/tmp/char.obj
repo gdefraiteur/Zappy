@@ -1,0 +1,30 @@
++name{
+:mage:
+};
++m{
+	:attack:{
+				*selectpos*
+			}
+	:skills:{
+				-1:{
+				*fire*
+				*chaos swarm*
+				}
+			}
+};
++stats{
+-i:12:
+-s:5:
+-d:6:
+-md:10:
+-l:20:
+};
++evo{
+-i:15:
+-s:5:
+-d:6:
+-md:15:
+-l:12:
+}
+
+
